@@ -26,6 +26,12 @@
     }
   },
 
+  "cache": {
+    "main": {
+      "driver": "default",
+      "config": { }
+    }
+  },
 
   "data": {
     "main": {
@@ -44,20 +50,6 @@
     }
   },
 
-  "cache": {
-    "main": {
-      "driver": "default",
-      "config": { }
-    }
-  },
-
-
-  "event": {
-    "driver": "default",
-    "prefix": "",
-    "config": { }
-  },
-
 
   "queue": {
     "default": {
@@ -67,19 +59,23 @@
     }
   },
 
-
-
-
-
-
-
-  "logger": {
+  "event": {
     "driver": "default",
+    "prefix": "",
     "config": { }
   },
 
-  "session": {
-    "driver": "default", "expiry": 3600,
+
+
+  "plan": {
+    "driver": "default",
+    "config": {}
+  },
+
+
+
+  "task": {
+    "driver": "default",
     "config": {}
   },
 
@@ -90,31 +86,18 @@
       "config": {}
     }
   },
-  "task": {
-    "driver": "default",
+
+
+
+  "session": {
+    "driver": "default", "expiry": 3600,
     "config": {}
   },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  "plan": {
+  "logger": {
     "driver": "default",
-    "config": {}
+    "config": { }
   },
-
 
 
 
@@ -129,7 +112,6 @@
     "driver": "default",
     "config": {}
   },
-
 
 
   "custom": {

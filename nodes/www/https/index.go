@@ -19,33 +19,16 @@ func init() {
 
 
 	noggo.Http.Route("test", Map{
-		"uri": "/test",
+		"uri": "/testhahahaa",
 		"route": Map{
-			"name": "test", "text": "test",
+			"name": "测试路由", "text": "测试路由", "coded": true,
+			//"args": noggo.Data.Fields("main", "test"),
+			"data": Map{
+				"msg": Map{ "type": "string", "must": true, "name": "消息", "text": "消息" },
+			},
+			"state": noggo.Sugar.States("ok", "no"),
 			"action": func(ctx *noggo.HttpContext) {
-
-				/*
-				db := noggo.Data.Base("main"); defer db.Close()
-
-				items,_ := db.Model("test").Limit(0, 20, Map{
-					"id": Map{ ">" : 5000 },
-				}, Map{
-					"id": driver.DESC, "created": driver.ASC,
-				})
-
-				items,err := db.Model("test").Group("title")
-				noggo.Logger.Debug("group", items, err)
-				*/
-
-				cb := noggo.Cache.Base("main");
-				err := cb.Set("test_key", Map{ "msg": "hahahahaha" }, 60*10*10)
-				noggo.Logger.Debug("cache", "set", err)
-
-				ddd,err := cb.Get("test_key")
-				noggo.Logger.Debug("cache", "get", err, ddd)
-
-
-				ctx.Text(ddd)
+				ctx.Json(Map{ "msg": "hahaha", "url": ctx.Url.Route("test") })
 			},
 		},
 	})

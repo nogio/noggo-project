@@ -33,3 +33,8 @@ func RemoveTest(item Map) (error) {
 	return db.Model("test").Remove(item)
 }
 
+
+func Gets(item Map) (error) {
+	db := noggo.Data.Base("main"); defer db.Close()
+	return db.Model("test").Query(Map{ "id": Map{ ">": 100 }})
+}

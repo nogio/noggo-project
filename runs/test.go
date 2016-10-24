@@ -10,16 +10,23 @@ import (
 	"github.com/nogio/noggo"
 	_ "github.com/nogio/noggo/core" //引用框架默认驱动等等，也可自己定义各种驱动
 	"github.com/nogio/noggo/middler"
+	"github.com/nogio/noggo/driver/data-postgres"
+	"github.com/nogio/noggo/driver/data-mysql"
 )
 
-
+func init() {
+	//注册数据层驱动
+	noggo.Driver("postgres", data_postgres.Driver())
+	noggo.Driver("mysql", data_mysql.Driver())
+}
 
 
 func main() {
 
-	//请求日志与静态文件中间件
+	//请求日志、静态文件、表单解析、中间件
 	noggo.Use(middler.HttpLogger())
 	noggo.Use(middler.HttpStatic("statics"))
+	noggo.Use(middler.HttpForm("uploads"))
 
 	//get 首页
 	noggo.Get("/", func(ctx *noggo.HttpContext) {
@@ -27,7 +34,7 @@ func main() {
 	})
 	//post 首页
 	noggo.Post("/", func(ctx *noggo.HttpContext) {
-		ctx.Text("post hello noggo.")
+		ctx.Json(ctx.Form)
 	})
 	//添加一个触发器，noggo.Trigger.Touch("trigger.test") 触发
 	noggo.Add("trigger.test", func(ctx *noggo.TriggerContext) {
