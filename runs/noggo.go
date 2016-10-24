@@ -9,17 +9,19 @@ import (
 	_ "../modules"
 	_ "../nodes"
 	"os"
-	"github.com/nogio/noggo/driver/data-mysql"
 	"github.com/nogio/noggo/driver/data-postgres"
+	"github.com/nogio/noggo/driver/data-mysql"
+	"github.com/nogio/noggo/driver/data-adodb"
+	"github.com/nogio/noggo/driver/data-sqlite"
 )
 
 func init() {
 	//基础驱动和默认方法在  github.com/nogio/noggo/core 包中
 	//直接引用即可， 否则所有驱动，以及类型，加密方法等等都需要手动注册
-
-	//注册数据缓驱动
-	noggo.Data.Driver("mysql", data_mysql.Driver())
-	noggo.Data.Driver("postgres", data_postgres.Driver())
+	noggo.Driver("postgres", data_postgres.Driver())
+	noggo.Driver("mysql", data_mysql.Driver())
+	noggo.Driver("adodb", data_adodb.Driver())
+	noggo.Driver("sqlite", data_sqlite.Driver())
 }
 
 func main() {
